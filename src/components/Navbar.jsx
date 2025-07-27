@@ -56,7 +56,7 @@ export const Navbar = () => {
                 className={`nav-link ${
                   location.pathname === "/cryptocurrencies" ? "active" : ""
                 }`}
-                to="/link"
+                to="/cryptocurrencies"
               >
                 Cryptocurrencies
               </Link>
@@ -64,11 +64,11 @@ export const Navbar = () => {
             <li className="nav-item">
               <Link
                 className={`nav-link ${
-                  location.pathname === "/exchange" ? "active" : ""
+                  location.pathname === "/exchanges" ? "active" : ""
                 }`}
-                to="/link"
+                to="/exchanges"
               >
-                Exchange
+                Exchanges
               </Link>
             </li>
             <li className="nav-item">
@@ -76,7 +76,7 @@ export const Navbar = () => {
                 className={`nav-link ${
                   location.pathname === "/news" ? "active" : ""
                 }`}
-                to="/link"
+                to="/news"
               >
                 News
               </Link>
