@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { Provider } from 'react-redux';
 import {
   Navbar,
   CryptoDetails,
@@ -12,12 +13,14 @@ import {
   Footer
 } from './components';
 import 'antd/dist/reset.css'; // resets global styles for AntD
+import store from './app/store';
 
 
 
 function App() {
   return (
     <BrowserRouter>
+    <Provider store={store}>
       <Navbar />
       
       <div className="container">
@@ -31,6 +34,7 @@ function App() {
         
       </div>
       <Footer></Footer>
+      </Provider>
     </BrowserRouter>
   );
 }
