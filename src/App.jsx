@@ -14,6 +14,7 @@ import {
 } from './components';
 import 'antd/dist/reset.css'; // resets global styles for AntD
 import store from './app/store';
+import { configDotenv } from 'dotenv';
 
 
 
