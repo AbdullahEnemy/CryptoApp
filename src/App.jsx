@@ -1,23 +1,24 @@
-import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Layout, Typography, Space } from "antd";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
 import {
   Navbar,
   CryptoDetails,
   Cryptocurrencies,
   Homepage,
   News,
-  Exchanges
+  Exchanges,
+  Footer
 } from './components';
+import 'antd/dist/reset.css'; // resets global styles for AntD
+
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      
       <div className="container">
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -26,7 +27,9 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/crypto/:coinid" element={<CryptoDetails />} />
         </Routes>
+        
       </div>
+      <Footer></Footer>
     </BrowserRouter>
   );
 }
