@@ -8,12 +8,13 @@ import { Loader } from "../components";
 
 const { Title } = Typography;
 
-export const Cryptocurrencies = ({simplified}) => {
-    const count=simplified?10:100;
+export const Cryptocurrencies = ({ simplified }) => {
+  const count = simplified ? 10 : 100;
   const { data: cryptoList, isFetching } = useGetCryptosQuery(count); // Get top 100 by default
   const [cryptos, setCryptos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
- 
+  
+
   useEffect(() => {
     const filteredData = cryptoList?.data?.coins.filter((coin) =>
       coin.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -26,6 +27,21 @@ export const Cryptocurrencies = ({simplified}) => {
   return (
     <>
       <div style={{ padding: "1rem 0" }}>
+        {!simplified && (
+          <>
+            <Title
+              level={2}
+              style={{ textAlign: "center", marginBottom: "1rem" }}
+            >
+              🔍 Browse Cryptocurrencies
+            </Title>
+            <Input
+              placeholder="Search Cryptocurrency"
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ marginBottom: "2rem", width: "100%" }}
+            />
+          </>
+        )}
         <Row gutter={[32, 32]} className="crypto-card-container">
           {cryptos?.map((currency) => (
             <Col
@@ -38,7 +54,14 @@ export const Cryptocurrencies = ({simplified}) => {
               <Link to={`/crypto/${currency.uuid}`}>
                 <Card
                   title={`${currency.rank}. ${currency.name}`}
-                  extra={<img className="crypto-image" src={currency.iconUrl} alt={currency.name} style={{ width: "30px" }} />}
+                  extra={
+                    <img
+                      className="crypto-image"
+                      src={currency.iconUrl}
+                      alt={currency.name}
+                      style={{ width: "30px" }}
+                    />
+                  }
                   hoverable
                 >
                   <p>💰 Price: {millify(currency.price)}</p>
