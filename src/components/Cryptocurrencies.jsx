@@ -4,6 +4,7 @@ import millify from "millify";
 import { Typography, Row, Col, Statistic, Card, Input } from "antd";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import { SmileFilled } from "@ant-design/icons";
+import { Loader } from "../components";
 
 const { Title } = Typography;
 
@@ -20,19 +21,11 @@ export const Cryptocurrencies = ({simplified}) => {
     setCryptos(filteredData);
   }, [cryptoList, searchTerm]);
 
-  if (isFetching) return <div>Loading...</div>;
+  if (isFetching) return <Loader></Loader>;
 
   return (
     <>
       <div style={{ padding: "1rem 0" }}>
-        {/* <Title level={2} style={{ textAlign: "center", marginBottom: "1rem" }}>
-          🔍 Browse Cryptocurrencies
-        </Title>
-        <Input
-          placeholder="Search Cryptocurrency"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ marginBottom: "2rem", width: "100%" }}
-        /> */}
         <Row gutter={[32, 32]} className="crypto-card-container">
           {cryptos?.map((currency) => (
             <Col

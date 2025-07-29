@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import millify from "millify"; //using it to connvert large number in to readable ones
 import { Typography, Row, Col, Statistic, Card } from "antd";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 const { Title } = Typography;
-import { Cryptocurrencies, News } from "../components";
+import { Cryptocurrencies, Loader, News } from "../components";
 export const Homepage = () => {
-  const { data, isFetching } = useGetCryptosQuery(10);
-  const globalStats = data?.data?.stats;
-  if (isFetching) return "loading";
+ const { data, isFetching } = useGetCryptosQuery(10); // still at top level
+  const [globalStats, setGlobalStats] = useState(null);
+  useEffect(() => {
+    if (data?.data?.stats) {
+      setGlobalStats(data.data.stats);
+    }
+  }, [data]);
+
+  if (isFetching || !globalStats) return <Loader></Loader>;
   return (
     <>
       <div className="container" style={{ padding: "2rem 1rem" }}>
