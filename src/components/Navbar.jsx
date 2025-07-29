@@ -5,12 +5,6 @@ import icon from "../images/cryptocurrency.png";
 import { useLocation } from "react-router-dom";
 import {
   HomeOutlined,
-  MoneyCollectOutlined,
-  BulbOutlined,
-  FunctionOutlined,
-  MenuOutlined,
-  UserOutlined,
-  FundOutlined,
 } from "@ant-design/icons";
 export const Navbar = () => {
   let location = useLocation();

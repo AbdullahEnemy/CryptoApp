@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Typography, Row, Col, Card, Avatar, Spin } from 'antd';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
-
+import { Loader } from "../components";
 const { Text, Title } = Typography;
 
 export const News = ({ simplified }) => {
@@ -12,11 +12,7 @@ export const News = ({ simplified }) => {
   });
 
   if (isLoading) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
-        <Spin tip="Loading News..." />
-      </div>
-    );
+    return <Loader></Loader>
   }
 
   if (error) return <div>Error loading news.</div>;
