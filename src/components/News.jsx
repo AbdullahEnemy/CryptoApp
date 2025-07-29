@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
-import { Typography, Row, Col, Card, Avatar, Spin } from 'antd';
+import { Typography, Row, Col, Card, Avatar } from 'antd';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
-import { Loader } from "../components";
+import { Loader } from '../components';
+
 const { Text, Title } = Typography;
 
 export const News = ({ simplified }) => {
@@ -11,20 +12,23 @@ export const News = ({ simplified }) => {
     count: simplified ? 10 : 100,
   });
 
-  if (isLoading) {
-    return <Loader></Loader>
-  }
-
-  if (error) return <div>Error loading news.</div>;
-
-  // Get actual news array from API response
   const newsList = Array.isArray(cryptoNews)
     ? cryptoNews
     : cryptoNews?.data || cryptoNews?.value || [];
 
-  // Limit to 10 if simplified
+  // Limit to 10 if simplified//Limiting it manually as api does not support limit feature 
   const limitedNews = simplified ? newsList.slice(0, 10) : newsList;
+  useEffect(() => {
+    if (limitedNews.length > 0) {
+      console.log('Fetched news:', limitedNews);
+    }
+    if (error) {
+      console.error('Error fetching news:', error);
+    }
+  }, [limitedNews, error]);
 
+  if (isLoading) return <Loader />;
+  if (error) return <div>Error loading news.</div>;
   if (!limitedNews.length) return <div>No news available.</div>;
 
   return (
