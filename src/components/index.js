@@ -4,3 +4,6 @@ export { Exchanges } from "./Exchanges";
 export{ Homepage } from "./Homepage";
 export{ CryptoDetails } from "./CryptoDetails";
 export{ Cryptocurrencies } from "./Cryptocurrencies";
+export { Footer } from "./Footer";
+export { Loader } from "./Loader";
+export { LineChart } from "./LineChart";
